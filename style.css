@@ -1,0 +1,72 @@
+/* Basic page styles */
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+body { font-family: Arial, Geneva, sans-serif; margin: 0; background: #f4f6f8; }
+.wrapper { width: 97%; max-width: 1200px; margin: 0 auto; background: white; padding: 10px; }
+h1 { color: #204d6b; }
+article { padding: 15px; margin-bottom: 15px; }
+article img { width: 100%; max-width: 225px; height: auto; }
+article p { line-height: 1.5; }
+
+/* Each row is a flex container */
+.row { display: flex; flex-flow: row wrap; }
+
+/* Mobile: boxes take the full row */
+[class*="col-"] { margin-left: 4%; flex: 0 0 92%; }
+.col-1 { background-color: #b8dce8; }
+.col-2 { background-color: #fff4cf; }
+.col-3 { background-color: #d5e8d4; }
+.col-4 { background-color: #e5daf2; }
+.col-5 { background-color: #f5d6d6; }
+
+/* Change the order of row 5 on smaller screens */
+.row-five .item-b { order: -1; }
+
+/* Tablet: two boxes can fit in a row */
+@media only screen and (min-width: 480px) {
+  .col-1, .col-2, .col-3, .col-5 { flex: 0 0 44%; }
+  .col-4 { flex: 0 0 92%; }
+  .row-five .item-b { order: 0; }
+}
+
+/* Desktop: four-column grid */
+@media only screen and (min-width: 768px) {
+  .col-1 { flex: 0 0 20%; }
+  .col-2 { flex: 0 0 44%; }
+  .col-3 { flex: 0 0 68%; }
+  .col-4 { flex: 0 0 92%; }
+  /* Five boxes fit in row 6 */
+  .row-six .col-5 { flex: 0 0 16%; }
+}
+
+/* Added desktop fix: keep the original styles above */
+/* Make sure the row uses the available space */
+.row { width: 100%; display: flex; flex-direction: row; flex-wrap: wrap; }
+.row article { min-width: 0; overflow-wrap: anywhere; }
+
+/* Desktop: show the four-column layout */
+@media only screen and (min-width: 768px) {
+  .row .col-1 { flex: 0 0 20%; }
+  .row .col-2 { flex: 0 0 44%; }
+  .row .col-3 { flex: 0 0 68%; }
+  .row .col-4 { flex: 0 0 92%; }
+  .row-six .col-5 { flex: 0 0 16%; }
+  .row-five .item-b { order: 0; }
+}
+
+/* Tablet: two columns */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .row .col-1, .row .col-2, .row .col-3, .row .col-5 { flex: 0 0 44%; }
+  .row .col-4 { flex: 0 0 92%; }
+}
+
+/* Phone: stack the boxes */
+@media only screen and (max-width: 479px) {
+  .row article { flex: 0 0 92%; }
+  .row-five .item-b { order: -1; }
+}
+
+/* Row 6 - evenly space the five items */
+.row-six {
+    justify-content: space-evenly;
+}
